@@ -60,6 +60,7 @@
                 <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
                             <input type="checkbox" name="checkList" value="${tableList.userID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                 </display:column>
+                <display:column headerClass="table_header" property="fullName" escapeXml="true" sortable="true" sortName="fullName" titleKey="Full Name" style="width: 30%"/>
                 <display:column headerClass="table_header" escapeXml="false" sortable="true" sortName="email" titleKey="admin.user.form.email" style="width: 30%">
                 	<a href="${editURL}?pojo.userID=${tableList.userID}">${tableList.email}</a>
                 </display:column>

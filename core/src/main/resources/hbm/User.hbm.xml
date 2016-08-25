@@ -11,8 +11,10 @@
 
 		</id>
 
+		<property name="fullName" column="fullName"/>
+
 		<property name="email" column="Email"/>
-	
+
 		<property name="password" column="Password"/>
 	
 		<property name="status" column="Status"/>

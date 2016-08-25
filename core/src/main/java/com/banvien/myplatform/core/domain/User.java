@@ -18,6 +18,11 @@ public class User implements Serializable {
 	 * Attribute userID.
 	 */
 	private Integer userID;
+
+	/**
+	 * Attribute fullName.
+	 */
+	private String fullName;
 	
 	/**
 	 * Attribute email.
@@ -170,8 +175,15 @@ public class User implements Serializable {
 		this.status = status;
 	}
 
+	public String getFullName() {
+		return fullName;
+	}
 
-public User(){}	
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public User(){}
 		
 	public User(Integer userID){this.userID = userID;}	
 	}

@@ -39,7 +39,7 @@ public class UserValidator extends ApplicationObjectSupport implements Validator
 	private void validateRequiredValues(UserBean cmd, Errors errors) {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.email", "errors.required", new String[] {this.getMessageSourceAccessor().getMessage("admin.useradmin.form.email")}, "non-empty value required.");
         ValidationUtils.rejectIfEmpty(errors, "pojo.status", "errors.required", new String[] {this.getMessageSourceAccessor().getMessage("label.status")}, "non-empty value required.");
-        ValidationUtils.rejectIfEmpty(errors, "pojo.isUnlimited", "errors.required", new String[] {this.getMessageSourceAccessor().getMessage("label.limited")}, "non-empty value required.");
+        ValidationUtils.rejectIfEmpty(errors, "pojo.fullName", "errors.required", new String[] {this.getMessageSourceAccessor().getMessage("label.fullName")}, "non-empty value required.");
         if (cmd.getPojo().getUserID() == null) {
             ValidationUtils.rejectIfEmpty(errors, "pojo.password", "errors.required", new String[] {this.getMessageSourceAccessor().getMessage("admin.useradmin.form.password")}, "non-empty value required.");
         }

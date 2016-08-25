@@ -26,6 +26,13 @@
 
             <div class="form">
                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
+                    <tr>
+                        <td><fmt:message key="admin.useradmin.form.fullname"/></td>
+                        <td>
+                            <form:input path="pojo.fullName" size="40"/>
+                            <form:errors path="pojo.fullName" cssClass="validateError"/>
+                        </td>
+                    </tr>
 					<tr>
                         <td><fmt:message key="admin.user.form.email"/></td>
                         <td>

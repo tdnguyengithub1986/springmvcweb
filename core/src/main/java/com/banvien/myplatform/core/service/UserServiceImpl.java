@@ -55,6 +55,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
         if (StringUtils.isNotEmpty(pojo.getPassword())) {
         	dbItem.setPassword(DesEncrypterUtils.getInstance().encrypt(pojo.getPassword()));
         }
+        dbItem.setFullName(pojo.getFullName());
         dbItem.setEmail(pojo.getEmail());
         dbItem.setStatus(pojo.getStatus());
         dbItem.setModifiedDate(new Timestamp(new Date().getTime()));

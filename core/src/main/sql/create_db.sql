@@ -96,6 +96,7 @@ DROP TABLE IF EXISTS `myplatform`.`User` ;
 
 CREATE  TABLE IF NOT EXISTS `myplatform`.`User` (
   `UserID` INT NOT NULL AUTO_INCREMENT,
+  `FullName` VARCHAR(100) NOT NULL ,
   `Email` VARCHAR(100) NOT NULL ,
   `Password` VARCHAR(50) NOT NULL ,
   `Status` TINYINT NOT NULL DEFAULT 2 ,

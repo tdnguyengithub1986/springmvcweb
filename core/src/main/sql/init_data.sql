@@ -1,6 +1,6 @@
 use myplatform;
 
-INSERT INTO `Country` (`CountryID`,`Code`,`Name`,`LanguageKey`, `DisplayOrder`) VALUES 
+INSERT INTO `Country` (`CountryID`,`Code`,`Name`,`LanguageKey`) VALUES
  (1,'af','Afghanistan','country.af'),
  (2,'ax','Aland Islands','country.ax'),
  (3,'al','Albania','country.al'),
