@@ -1,14 +1,17 @@
-package com.banvien.myplatform.core.security;
+package com.banvien.myplatform.web.security;
 
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+
+import java.util.Collection;
 
 public class MyUserDetail extends User {
 
 	public MyUserDetail(String username, String password, boolean enabled,
 			boolean accountNonExpired, boolean credentialsNonExpired,
-			boolean accountNonLocked, GrantedAuthority[] authorities) {
+			boolean accountNonLocked, Collection<SimpleGrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired,
 				accountNonLocked, authorities);
 	}

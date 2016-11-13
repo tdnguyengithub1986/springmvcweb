@@ -5,7 +5,6 @@ package com.banvien.myplatform.core.service;
 import java.util.List;
 
 import com.banvien.myplatform.core.domain.Country;
-import com.banvien.myplatform.core.domain.Language;
 import com.banvien.myplatform.core.domain.Province;
 import com.banvien.myplatform.core.exception.ObjectNotFoundException;
 
@@ -22,6 +21,4 @@ public interface GlobalMetaDataService {
     
     public List<String> getRoles();
     
-    public List<Language> getLanguages();
-
 }

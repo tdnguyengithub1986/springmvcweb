@@ -1,4 +1,4 @@
-package com.banvien.myplatform.core.security;
+package com.banvien.myplatform.web.security;
 
 
 import org.springframework.security.core.GrantedAuthority;

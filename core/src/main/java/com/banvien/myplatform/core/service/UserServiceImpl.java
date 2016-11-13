@@ -1,12 +1,5 @@
 package com.banvien.myplatform.core.service;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.banvien.myplatform.core.Constants;
 import com.banvien.myplatform.core.bean.UserBean;
 import com.banvien.myplatform.core.dao.GenericDAO;
@@ -14,7 +7,13 @@ import com.banvien.myplatform.core.dao.UserDAO;
 import com.banvien.myplatform.core.domain.User;
 import com.banvien.myplatform.core.exception.DuplicateException;
 import com.banvien.myplatform.core.exception.ObjectNotFoundException;
-import com.banvien.myplatform.core.security.DesEncrypterUtils;
+import com.banvien.myplatform.core.utils.DesEncrypterUtils;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import java.sql.Timestamp;
+import java.util.Date;
 /**
  * <p>Business Service for Users</p>
  * <p>Generated at Sat Sep 29 11:27:04 ICT 2012</p>
@@ -34,7 +33,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Integer> implement
     }				
 
 	public Object[] search(UserBean searchBean) {
-		return userDAO.search4AdminPaging(searchBean.getPojo().getEmail(), searchBean.getPojo().getStatus(), searchBean.getCreatedDateFrom(), searchBean.getCreatedDateTo(), searchBean.getFirstItem(), searchBean.getMaxPageItems(), searchBean.getSortExpression(), searchBean.getSortDirection());
+		return userDAO.search(searchBean.getPojo().getEmail(), searchBean.getPojo().getStatus(), searchBean.getCreatedDateFrom(), searchBean.getCreatedDateTo(), searchBean.getFirstItem(), searchBean.getMaxPageItems(), searchBean.getSortExpression(), searchBean.getSortDirection());
 	}	
 	@Override
     public User findByEmail(String email) throws ObjectNotFoundException {

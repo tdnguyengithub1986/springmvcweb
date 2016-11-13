@@ -1,5 +1,8 @@
 package com.banvien.myplatform.core.domain;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 
@@ -11,11 +14,17 @@ import java.io.Serializable;
  * @author Portal Generatior v1.1 / Hibernate pojos and xml mapping files.
  * 
  */
+@Table(name = "Country")
+@Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Country implements Serializable {
 
 	/**
 	 * Attribute countryID.
 	 */
+	@Column(name = "countryID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer countryID;
 	
 	/**

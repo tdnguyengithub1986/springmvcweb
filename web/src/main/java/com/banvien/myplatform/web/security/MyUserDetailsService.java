@@ -1,4 +1,4 @@
-package com.banvien.myplatform.core.security;
+package com.banvien.myplatform.web.security;
 
 
 import com.banvien.myplatform.core.dao.UseradminDAO;
@@ -6,8 +6,7 @@ import com.banvien.myplatform.core.domain.Useradmin;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -86,15 +85,13 @@ public class MyUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException(e.getMessage());
 		}
 		
-		Map<String, GrantedAuthority> authorities = new HashMap<String, GrantedAuthority>();
+		Map<String, SimpleGrantedAuthority> authorities = new HashMap<String, SimpleGrantedAuthority>();
 
 		//this line of code is used to check whether the user has login or not
-		authorities.put(account.getRole(), new GrantedAuthorityImpl(account.getRole()));
-		authorities.put("LOGINED", new GrantedAuthorityImpl("LOGINED"));
+		authorities.put(account.getRole(), new SimpleGrantedAuthority(account.getRole()));
+		authorities.put("LOGINED", new SimpleGrantedAuthority("LOGINED"));
 
-		GrantedAuthority[] grantedAuthority = new GrantedAuthority[authorities.size()];
-		authorities.values().toArray(grantedAuthority);
-		MyUserDetail loginUser = new MyUserDetail(username, account.getPassword(), true, true, true, true, grantedAuthority);
+		MyUserDetail loginUser = new MyUserDetail(username, account.getPassword(), true, true, true, true, authorities.values());
 		BeanUtils.copyProperties(account, loginUser);
 
 		return loginUser;

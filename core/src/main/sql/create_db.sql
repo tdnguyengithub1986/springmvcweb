@@ -6,20 +6,6 @@ DROP SCHEMA IF EXISTS `myplatform` ;
 CREATE SCHEMA IF NOT EXISTS `myplatform` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `myplatform` ;
 
--- -----------------------------------------------------
--- Table `myplatform`.`Language`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `myplatform`.`Language` ;
-
-CREATE  TABLE IF NOT EXISTS `myplatform`.`Language` (
-  `LanguageID` INT NOT NULL AUTO_INCREMENT,
-  `Code` VARCHAR(2) NOT NULL ,
-  `Name` VARCHAR(50) NOT NULL ,
-  `LanguageKey` VARCHAR(50) NULL ,
-  PRIMARY KEY (`LanguageID`) ,
-  UNIQUE INDEX `Code_UNIQUE` (`Code` ASC) )
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `myplatform`.`Country`
@@ -100,7 +86,6 @@ CREATE  TABLE IF NOT EXISTS `myplatform`.`User` (
   `Email` VARCHAR(100) NOT NULL ,
   `Password` VARCHAR(50) NOT NULL ,
   `Status` TINYINT NOT NULL DEFAULT 2 ,
-  `LanguageID` INT NULL ,
   `CreatedDate` DATETIME NULL ,
   `ModifiedDate` DATETIME NULL ,
   `ModifiedBy` VARCHAR(100) NULL ,

@@ -12,6 +12,6 @@ import com.banvien.myplatform.core.domain.User;
  * 
  */
 public interface UserDAO extends GenericDAO<User,Integer> {
-	public Object[] search4AdminPaging(String email, Byte status, Date createdDateFrom,
-			Date createdDateTo, Integer firstItem, Integer maxItems, String sortExpression, String sortDirection);
+	public Object[] search(String email, Byte status, Date createdDateFrom,
+						   Date createdDateTo, Integer firstItem, Integer maxItems, String sortExpression, String sortDirection);
 }

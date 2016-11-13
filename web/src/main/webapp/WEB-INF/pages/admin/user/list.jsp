@@ -98,7 +98,7 @@
         </div>
         <div class="adminListButton">
 			<c:if test="${not empty totalDeleted}">
-				<div class="msg-response"><fmt:message key="database.items.deleted"><fmt:param value="${totalDeleted}"/></fmt:message></div>
+				<div class="msg-response"><fmt:message key="database.items.disabled"><fmt:param value="${totalDeleted}"/></fmt:message></div>
 				<br />
 			</c:if>
 			<c:if test="${not empty messageResponse}">

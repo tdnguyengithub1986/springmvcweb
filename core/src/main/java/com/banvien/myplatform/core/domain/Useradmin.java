@@ -1,5 +1,8 @@
 package com.banvien.myplatform.core.domain;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,11 +15,17 @@ import java.util.Date;
  * @author Portal Generatior v1.1 / Hibernate pojos and xml mapping files.
  * 
  */
+@Table(name = "UserAdmin")
+@Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Useradmin implements Serializable {
 
 	/**
 	 * Attribute userAdminID.
 	 */
+	@Column(name = "userAdminID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer userAdminID;
 	
 	/**

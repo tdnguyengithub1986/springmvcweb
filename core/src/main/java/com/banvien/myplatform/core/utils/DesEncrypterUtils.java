@@ -1,4 +1,4 @@
-package com.banvien.myplatform.core.security;
+package com.banvien.myplatform.core.utils;
 
 
 import org.apache.commons.logging.Log;

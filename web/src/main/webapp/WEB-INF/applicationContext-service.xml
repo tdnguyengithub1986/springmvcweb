@@ -13,13 +13,7 @@
     <!-- AOP: Configuration and Aspects                                      -->
     <!-- =================================================================== -->
     <aop:config>
-        <aop:advisor id="userManagerTx" advice-ref="userManagerTxAdvice" pointcut="execution(* *..service.UserService.*(..))" order="0"/>
-        <aop:advisor id="userManagerSecurity" advice-ref="userSecurityAdvice" pointcut="execution(* *..service.UserService.saveUser(..))" order="1"/>
-        <aop:advisor id="managerSaveTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.save*(..))" order="2"/>
-        <aop:advisor id="managerAddTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.add*(..))" order="2"/>
-        <aop:advisor id="managerUpdateTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.update*(..))" order="2"/>
-        <aop:advisor id="managerDeleteTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.delete*(..))" order="2"/>
-        <aop:advisor id="managerImportTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.import*(..))" order="2"/>
+        <aop:advisor id="managerSaveTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.*(..))" order="1"/>
     </aop:config>
     
     <!-- Enable @Transactional support -->
@@ -30,10 +24,10 @@
 
 
     <bean id="useradminService" class="com.banvien.myplatform.core.service.UseradminServiceImpl">
-    	<property name="useradminDAO" ref="useradminDAO"/>			    	
+    	<property name="useradminDAO" ref="useradminDAO"/>
     </bean>
 
-		<bean id="countryService" class="com.banvien.myplatform.core.service.CountryServiceImpl">
+    <bean id="countryService" class="com.banvien.myplatform.core.service.CountryServiceImpl">
     	<property name="countryDAO" ref="countryDAO"/>			    	
     </bean>
 		<bean id="cityService" class="com.banvien.myplatform.core.service.CityServiceImpl">
@@ -42,9 +36,6 @@
 		<bean id="provinceService" class="com.banvien.myplatform.core.service.ProvinceServiceImpl">
     	<property name="provinceDAO" ref="provinceDAO"/>			    	
     </bean>
-		<bean id="languageService" class="com.banvien.myplatform.core.service.LanguageServiceImpl">
-    	<property name="languageDAO" ref="languageDAO"/>			    	
-    </bean>
 	<bean id="userService" class="com.banvien.myplatform.core.service.UserServiceImpl">
     	<property name="userDAO" ref="userDAO"/>			    	
     </bean>
@@ -52,25 +43,20 @@
     <bean id="globalMetaDataService" class="com.banvien.myplatform.core.service.GlobalMetaDataServiceImpl">
     	<property name="provinceDAO" ref="provinceDAO"/>			
     	<property name="countryDAO" ref="countryDAO"/>	    	
-    	<property name="languageDAO" ref="languageDAO"/>	
     </bean>
 	
     <tx:advice id="txAdvice">
         <tx:attributes>
             <!-- Read-only commented out to make things easier for end-users -->
             <!-- http://issues.appfuse.org/browse/APF-556 -->
-            <!--tx:method name="get*" read-only="true"/-->
-            <tx:method name="*" rollback-for="com.banvien.myplatform.core.exception.DuplicateException"/>
+            <tx:method name="search*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*" rollback-for="Throwable"/>
         </tx:attributes>
     </tx:advice>
 
-    <tx:advice id="userManagerTxAdvice">
-        <tx:attributes>
-            <tx:method name="save*" rollback-for="UserExistsException"/>
-        </tx:attributes>
-    </tx:advice>
-    
-    <bean id="userSecurityAdvice" class="com.banvien.myplatform.core.security.MyUserDetailsService">
+    <bean id="userSecurityAdvice" class="com.banvien.myplatform.web.security.MyUserDetailsService">
     	<property name="useradminDAO" ref="useradminDAO"/>
     </bean>
 

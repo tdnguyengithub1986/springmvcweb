@@ -1,5 +1,8 @@
 package com.banvien.myplatform.core.domain;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,11 +15,17 @@ import java.util.Date;
  * @author Portal Generatior v1.1 / Hibernate pojos and xml mapping files.
  * 
  */
+@Table(name = "User")
+@Entity
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class User implements Serializable {
 
 	/**
 	 * Attribute userID.
 	 */
+	@Column(name = "userID")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer userID;
 
 	/**
@@ -38,11 +47,6 @@ public class User implements Serializable {
 	 * Attribute isActive.
 	 */
 	private Byte status;
-	
-	/**
-	 * Attribute languageID.
-	 */
-	private Integer languageID;
 	
 	/**
 	 * Attribute createdDate.
@@ -104,23 +108,6 @@ public class User implements Serializable {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-
-	/**
-	 * <p> 
-	 * </p>
-	 * @return languageID
-	 */
-	public Integer getLanguageID() {
-		return languageID;
-	}
-
-	/**
-	 * @param languageID new value for languageID 
-	 */
-	public void setLanguageID(Integer languageID) {
-		this.languageID = languageID;
 	}
 	
 

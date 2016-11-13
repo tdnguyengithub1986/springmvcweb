@@ -4,10 +4,9 @@ package com.banvien.myplatform.web.security;
  * 
  */
 
+import com.banvien.myplatform.core.utils.DesEncrypterUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
-
-import com.banvien.myplatform.core.security.DesEncrypterUtils;
 
 /**
  *

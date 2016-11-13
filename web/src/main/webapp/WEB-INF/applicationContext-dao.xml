@@ -8,18 +8,9 @@
 
 	<!-- Hibernate SessionFactory -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mappingResources">
-			<list>
-				<value>hbm/Useradmin.hbm.xml</value>
-				<value>hbm/Country.hbm.xml</value>
-				<value>hbm/City.hbm.xml</value>
-				<value>hbm/Province.hbm.xml</value>
-				<value>hbm/Language.hbm.xml</value>
-				<value>hbm/User.hbm.xml</value>
-			</list>
-		</property>
+		<property name="packagesToScan" value="com.banvien.myplatform.core.domain"/>
 		<property name="hibernateProperties">
           <props>
             <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -62,16 +53,9 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
 
-
 	<bean id="provinceDAO" class="com.banvien.myplatform.core.dao.ProvinceHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>	
-
-
-	<bean id="languageDAO" class="com.banvien.myplatform.core.dao.LanguageHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>	
-
 
 	<bean id="userDAO" class="com.banvien.myplatform.core.dao.UserHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />

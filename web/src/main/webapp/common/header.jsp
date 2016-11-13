@@ -1,6 +1,6 @@
 <%@page trimDirectiveWhitespaces="true"%>
 <%@ include file="/common/taglibs.jsp" %>
-<%@page import="com.banvien.myplatform.core.security.SecurityUtils"%>
+<%@page import="com.banvien.myplatform.web.security.SecurityUtils"%>
 <%--<c:set var="userName" value="<%=SecurityUtils.getPrincipal().getEmail()%>"/>--%>
 <%@ include file="/common/taglibs.jsp"%>
 <div class="center">

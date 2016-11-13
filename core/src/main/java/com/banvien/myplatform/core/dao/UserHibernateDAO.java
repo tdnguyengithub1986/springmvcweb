@@ -25,12 +25,12 @@ public class UserHibernateDAO extends
 		UserDAO {
 
 	@Override
-	public Object[] search4AdminPaging(final String email, final Byte status,
-			final Date createdDateFrom, final Date createdDateTo,
-			final Integer firstItem, final Integer maxItems, final String sortExpression,
-			final String sortDirection) {
+	public Object[] search(final String email, final Byte status,
+                           final Date createdDateFrom, final Date createdDateTo,
+                           final Integer firstItem, final Integer maxItems, final String sortExpression,
+                           final String sortDirection) {
 		
-		 Object[] res = new Object[]{0, new ArrayList<User>()};
+		 Object[] res;
 
 	        try{
 	            StringBuffer whereClause = new StringBuffer(" 1 = 1 ");
