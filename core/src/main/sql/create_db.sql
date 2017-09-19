@@ -34,7 +34,7 @@ CREATE  TABLE IF NOT EXISTS `myplatform`.`City` (
   `Name` VARCHAR(100) NOT NULL ,
   `LanguageKey` VARCHAR(50)  NULL ,
   PRIMARY KEY (`CityID`) ,
-  INDEX `City_Name_INDEX` (`Name` ASC) )
+  UNIQUE INDEX `City_Name_INDEX` (`Name` ASC) )
 ENGINE = InnoDB;
 
 
@@ -93,6 +93,18 @@ CREATE  TABLE IF NOT EXISTS `myplatform`.`User` (
   UNIQUE INDEX `User_Email_UQ` (`Email` ASC) )
 ENGINE = InnoDB;
 
+DROP TABLE IF EXISTS `myplatform`.`Survey` ;
+
+CREATE  TABLE IF NOT EXISTS `myplatform`.`Survey` (
+  `SurveyID` INT NOT NULL AUTO_INCREMENT,
+  `SurveyName` VARCHAR(100) NOT NULL ,
+  `Status` TINYINT NOT NULL DEFAULT 2 ,
+  `CreatedDate` DATETIME NULL ,
+  `ModifiedDate` DATETIME NULL ,
+  `ModifiedBy` VARCHAR(100) NULL ,
+  PRIMARY KEY (`SurveyID`) ,
+  UNIQUE INDEX `Survey_SurveyName_UQ` (`SurveyName` ASC) )
+ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

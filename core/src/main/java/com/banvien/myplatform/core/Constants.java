@@ -80,6 +80,14 @@ public final class Constants {
     public static final byte USER_INACTIVE = 2;
     public static final byte USER_DISABLED = 3;
     public static final byte USER_IS_UNLIMITED = 1;
+
+    /**
+     * Survey status constants
+     */
+    public static final byte SURVEY_ACTIVE = 1;
+    public static final byte SURVEY_INACTIVE = 2;
+    public static final byte SURVEY_DISABLED = 3;
+    public static final byte SURVEY_IS_UNLIMITED = 1;
     
     /**
      *  Action Request
