@@ -31,10 +31,17 @@ public class SurveyServiceImpl extends GenericServiceImpl<Survey, Integer> imple
     }
 
     public Object[] search(SurveyBean searchBean) {
-        return surveyDAO.search(searchBean.getPojo().getStatus(), searchBean.getCreatedDateFrom(), searchBean.getCreatedDateTo(), searchBean.getFirstItem(), searchBean.getMaxPageItems(), searchBean.getSortExpression(), searchBean.getSortDirection());
+        return surveyDAO.search(searchBean.getPojo().getSurveyName(), searchBean.getPojo().getStatus(), searchBean.getStartedDateFrom(), searchBean.getStartedDateTo(), searchBean.getFirstItem(), searchBean.getMaxPageItems(), searchBean.getSortExpression(), searchBean.getSortDirection());
     }
 
-
+    @Override
+    public Survey findBySurveyName(String surveyName) throws ObjectNotFoundException {
+        Survey res = surveyDAO.findEqualUnique("surveyName", surveyName);
+        if (res == null) {
+            throw new ObjectNotFoundException("Not found survey with survey name " + surveyName);
+        }
+        return res;
+    }
     @Override
     public void updateItem(SurveyBean surveyBean) throws ObjectNotFoundException, DuplicateException {
         Survey dbItem = surveyDAO.findByIdNoAutoCommit(surveyBean.getPojo().getSurveyID());
@@ -42,18 +49,17 @@ public class SurveyServiceImpl extends GenericServiceImpl<Survey, Integer> imple
             throw new ObjectNotFoundException("Not found survey " + surveyBean.getPojo().getSurveyID());
         }
         Survey pojo = surveyBean.getPojo();
-
         dbItem.setSurveyName(pojo.getSurveyName());
         dbItem.setStatus(pojo.getStatus());
-        dbItem.setModifiedDate(new Timestamp(new Date().getTime()));
+        dbItem.setStartedDate(pojo.getStartedDate());
+        dbItem.setEndedDate(pojo.getEndedDate());
+
         surveyDAO.update(dbItem);
     }
 
     @Override
     public void addItem(SurveyBean surveyBean) throws DuplicateException {
         Survey pojo = surveyBean.getPojo();
-        pojo.setCreatedDate(new Timestamp(new Date().getTime()));
-
         surveyDAO.save(pojo);
         surveyBean.setPojo(pojo);
     }
@@ -68,7 +74,7 @@ public class SurveyServiceImpl extends GenericServiceImpl<Survey, Integer> imple
                 if (dbItem == null) {
                     throw new ObjectNotFoundException("Not found survey " + id);
                 }
-                dbItem.setStatus(Constants.SURVEY_DISABLED);
+                dbItem.setStatus(Constants.SURVEY_DELETED);
                 surveyDAO.update(dbItem);
             }
         }

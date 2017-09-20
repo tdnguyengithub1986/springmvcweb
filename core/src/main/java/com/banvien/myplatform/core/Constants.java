@@ -84,9 +84,10 @@ public final class Constants {
     /**
      * Survey status constants
      */
-    public static final byte SURVEY_ACTIVE = 1;
-    public static final byte SURVEY_INACTIVE = 2;
-    public static final byte SURVEY_DISABLED = 3;
+    public static final byte SURVEY_ONGOING = 1;
+    public static final byte SURVEY_COMMENCING = 2;
+    public static final byte SURVEY_COMPLETED = 3;
+    public static final byte SURVEY_DELETED = 4;
     public static final byte SURVEY_IS_UNLIMITED = 1;
     
     /**

@@ -8,7 +8,7 @@ import com.banvien.myplatform.core.exception.ObjectNotFoundException;
 import com.banvien.myplatform.core.service.SurveyService;
 import com.banvien.myplatform.web.editor.CustomDateEditor;
 import com.banvien.myplatform.web.util.RequestUtil;
-import com.banvien.myplatform.web.validator.admin.UserValidator;
+import com.banvien.myplatform.web.validator.admin.SurveyValidator;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -35,28 +35,31 @@ public class SurveyController extends ApplicationObjectSupport {
     @Autowired
     private SurveyService surveyService;
 
+    @Autowired
+    private SurveyValidator surveyValidator;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Date.class, new CustomDateEditor());
     }
 
-    /*@RequestMapping(value="/admin/survey/edit.html", method=RequestMethod.POST)
+    @RequestMapping(value="/admin/survey/edit.html", method=RequestMethod.POST)
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) SurveyBean surveyBean, BindingResult bindingResult) {
         ModelAndView mav = new ModelAndView("/admin/survey/edit");
         Survey pojo = surveyBean.getPojo();
         String crudaction = surveyBean.getCrudaction();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals(Constants.ACTION_INSERT_UPDATE)) {
             try {
-                userValidator.validate(userBean, bindingResult);
+                surveyValidator.validate(surveyBean, bindingResult);
                 if(!bindingResult.hasErrors()) {
-                    if(pojo.getUserID() != null && pojo.getUserID() > 0) {
-                        userService.updateItem(userBean);
+                    if(pojo.getSurveyID() != null && pojo.getSurveyID() > 0) {
+                        surveyService.updateItem(surveyBean);
                         mav.addObject(Constants.MESSAGE_RESPONSE_MODEL_KEY, getMessageSourceAccessor().getMessage("database.update.successful"));
                     } else {
-                        userService.addItem(userBean);
+                        surveyService.addItem(surveyBean);
                         mav.addObject(Constants.MESSAGE_RESPONSE_MODEL_KEY, getMessageSourceAccessor().getMessage("database.add.successful"));
                     }
-                    userBean.getPojo().setPassword("");
+
                     mav.addObject("success", true);
 
                 }
@@ -71,28 +74,27 @@ public class SurveyController extends ApplicationObjectSupport {
                 mav.addObject(Constants.MESSAGE_RESPONSE_MODEL_KEY, getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        referenceData(mav);
+        mav.addObject(Constants.FORM_MODEL_KEY, surveyBean);
         return mav;
     }
 
-    @RequestMapping(value="/admin/user/edit.html", method=RequestMethod.GET)
-    public ModelAndView edit(UserBean userBean) {
-        ModelAndView mav = new ModelAndView("/admin/user/edit");
-        if(userBean.getPojo().getUserID() != null && userBean.getPojo().getUserID() > 0) {
+    @RequestMapping(value="/admin/survey/edit.html", method=RequestMethod.GET)
+    public ModelAndView edit(SurveyBean surveyBean) {
+        ModelAndView mav = new ModelAndView("/admin/survey/edit");
+        if(surveyBean.getPojo().getSurveyID() != null && surveyBean.getPojo().getSurveyID() > 0) {
             try {
-                User itemObj = userService.findById(userBean.getPojo().getUserID());
-                itemObj.setPassword("");
-                userBean.setPojo(itemObj);
+                Survey itemObj = surveyService.findById(surveyBean.getPojo().getSurveyID());
+
+                surveyBean.setPojo(itemObj);
             }
             catch (Exception e) {
-                logger.error("Could not found user admin " + userBean.getPojo().getUserID(), e);
+                logger.error("Could not found the survey " + surveyBean.getPojo().getSurveyID(), e);
             }
         }
 
-        mav.addObject(Constants.FORM_MODEL_KEY, userBean);
-        referenceData(mav);
+        mav.addObject(Constants.FORM_MODEL_KEY, surveyBean);
         return mav;
-    }*/
+    }
     @RequestMapping({"/admin/survey/list.html"})
     public ModelAndView list(SurveyBean bean, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/admin/survey/list");
@@ -117,7 +119,5 @@ public class SurveyController extends ApplicationObjectSupport {
         Object[] results = surveyService.search(bean);
         bean.setListResult((List<Survey>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
-    }
-    private void referenceData(ModelAndView mav) {
     }
 }

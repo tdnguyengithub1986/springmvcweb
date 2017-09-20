@@ -40,12 +40,12 @@ public class Survey implements Serializable {
     /**
      * Attribute createdDate.
      */
-    private Date createdDate;
+    private Date startedDate;
 
     /**
      * Attribute modifiedDate.
      */
-    private Date modifiedDate;
+    private Date endedDate;
 
     private String modifiedBy;
 
@@ -77,20 +77,20 @@ public class Survey implements Serializable {
         this.status = status;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getStartedDate() {
+        return startedDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setStartedDate(Date startedDate) {
+        this.startedDate = startedDate;
     }
 
-    public Date getModifiedDate() {
-        return modifiedDate;
+    public Date getEndedDate() {
+        return endedDate;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
+    public void setEndedDate(Date endedDate) {
+        this.endedDate = endedDate;
     }
 
     public String getModifiedBy() {

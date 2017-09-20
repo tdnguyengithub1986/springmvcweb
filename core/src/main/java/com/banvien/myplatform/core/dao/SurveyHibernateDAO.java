@@ -18,8 +18,8 @@ public class SurveyHibernateDAO extends
         SurveyDAO {
 
     @Override
-    public Object[] search(final Byte status,
-                           final Date createdDateFrom, final Date createdDateTo,
+    public Object[] search(final String surveyName, final Byte status,
+                           final Date startedDateFrom, final Date startedDateTo,
                            final Integer firstItem, final Integer maxItems, final String sortExpression,
                            final String sortDirection) {
 
@@ -27,12 +27,14 @@ public class SurveyHibernateDAO extends
 
         try{
             StringBuffer whereClause = new StringBuffer(" 1 = 1 ");
-
-            if (createdDateFrom != null) {
-                whereClause.append(" AND s.createdDate >= :createdDateFrom");
+            if (StringUtils.isNotBlank(surveyName)){
+                whereClause.append(" AND s.surveyName = :surveyName");
             }
-            if (createdDateTo != null) {
-                whereClause.append(" AND s.createdDate <= :createdDateTo");
+            if (startedDateFrom != null) {
+                whereClause.append(" AND s.startedDate >= :startedDateFrom");
+            }
+            if (startedDateTo != null) {
+                whereClause.append(" AND s.startedDate <= :startedDateTo");
             }
             if(status != null) {
                 whereClause.append(" AND s.status = :status");
@@ -56,15 +58,15 @@ public class SurveyHibernateDAO extends
                                     listSQL.append(" DESC");
                                 }
                             }else {
-                                listSQL.append(" ORDER BY s.createdDate DESC");
+                                listSQL.append(" ORDER BY s.startedDate DESC");
                             }
                             Query query = session
                                     .createQuery(listSQL.toString());
-                            if (createdDateFrom != null) {
-                                query.setParameter("createdDateFrom", createdDateFrom);
+                            if (startedDateFrom != null) {
+                                query.setParameter("startedDateFrom", startedDateFrom);
                             }
-                            if (createdDateTo != null) {
-                                query.setParameter("createdDateTo", createdDateTo);
+                            if (startedDateTo != null) {
+                                query.setParameter("startedDateTo", startedDateTo);
                             }
                             if(status != null) {
                                 query.setParameter("status", status);
@@ -89,11 +91,11 @@ public class SurveyHibernateDAO extends
                             countSQL.append(where);
                             Query query = session.createQuery(countSQL.toString());
 
-                            if (createdDateFrom != null) {
-                                query.setParameter("createdDateFrom", createdDateFrom);
+                            if (startedDateFrom != null) {
+                                query.setParameter("startedDateFrom", startedDateFrom);
                             }
-                            if (createdDateTo != null) {
-                                query.setParameter("createdDateTo", createdDateTo);
+                            if (startedDateTo != null) {
+                                query.setParameter("startedDateTo", startedDateTo);
                             }
                             if(status != null) {
                                 query.setParameter("status", status);

@@ -113,6 +113,7 @@ public class UserController extends ApplicationObjectSupport {
 		}
         executeSearch(bean, request);
         mav.addObject(Constants.LIST_MODEL_KEY, bean);
+
         return mav;
     }
 

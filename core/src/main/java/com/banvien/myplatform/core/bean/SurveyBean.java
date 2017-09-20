@@ -15,21 +15,43 @@ public class SurveyBean extends AbstractBean<Survey> {
         this.pojo = new Survey();
     }
 
-    private Date createdDateFrom;
+    private Date startedDateFrom;
 
-    private Date createdDateTo;
+    private Date startedDateTo;
 
-    public Date getCreatedDateFrom() {
-        return createdDateFrom;
+    private Date startedDate;
+    private Date endedDate;
+
+    public Date getStartedDate() {
+        return startedDate;
     }
-    public void setCreatedDateFrom(Date createdDateFrom) {
-        this.createdDateFrom = createdDateFrom;
+
+    public void setStartedDate(Date startedDate) {
+        this.startedDate = startedDate;
     }
-    public Date getCreatedDateTo() {
-        return createdDateTo;
+
+    public Date getEndedDate() {
+        return endedDate;
     }
-    public void setCreatedDateTo(Date createdDateTo) {
-        this.createdDateTo = createdDateTo;
+
+    public void setEndedDate(Date endedDate) {
+        this.endedDate = endedDate;
+    }
+
+    public Date getStartedDateFrom() {
+        return startedDateFrom;
+    }
+    public void setStartedDateFrom(Date startedDateFrom)
+    {
+        this.startedDateFrom = startedDateFrom;
+    }
+    public Date getStartedDateTo()
+    {
+        return startedDateTo;
+    }
+    public void setStartedDateTo(Date startedDateTo)
+    {
+        this.startedDateTo = startedDateTo;
     }
 
 

@@ -31,19 +31,19 @@
 
                     </tr>
                     <tr>
-                        <td><fmt:message key="label.createddate"/></td>
-                        <td><input id="fromDate" name="createdDateFrom" size="15" value="<fmt:formatDate value='${items.createdDateFrom }' pattern='${date_format }'/>"/></td>
+                        <td><fmt:message key="label.starteddate"/></td>
+                        <td><input id="fromDate" name="startedDateFrom" size="15" value="<fmt:formatDate value='${items.startedDateFrom }' pattern='${date_format }'/>"/></td>
 
                         <td><fmt:message key="label.to"/></td>
-                        <td><input id="toDate" name="createdDateTo" size="15" value="<fmt:formatDate value='${items.createdDateTo }' pattern='${date_format }'/>"/></td>
+                        <td><input id="toDate" name="startedDateTo" size="15" value="<fmt:formatDate value='${items.startedDateTo }' pattern='${date_format }'/>"/></td>
                     </tr>
                     <tr>
                         <td><fmt:message key="label.status"/></td>
                         <td colspan="3">
                             <form:radiobutton path="pojo.status" value="" cssClass="radioCls" checked="true"/>&nbsp;<label><fmt:message key="label.all"/></label>
-                            <form:radiobutton path="pojo.status" value="${Constants['USER_ACTIVE'] }" cssClass="radioCls"/>&nbsp;<label><fmt:message key="label.commencing"/></label>
-                            <form:radiobutton path="pojo.status" value="${Constants['USER_INACTIVE'] }" cssClass="radioCls"/>&nbsp;<label><fmt:message key="label.ongoing"/></label>
-                            <form:radiobutton path="pojo.status" value="${Constants['USER_DISABLED'] }" cssClass="radioCls"/>&nbsp;<label><fmt:message key="label.completed"/></label>
+                            <form:radiobutton path="pojo.status" value="${Constants['SURVEY_COMMENCING'] }" cssClass="radioCls"/>&nbsp;<label><fmt:message key="label.commencing"/></label>
+                            <form:radiobutton path="pojo.status" value="${Constants['SURVEY_ONGOIN'] }" cssClass="radioCls"/>&nbsp;<label><fmt:message key="label.ongoing"/></label>
+                            <form:radiobutton path="pojo.status" value="${Constants['SURVEY_COMPLETED'] }" cssClass="radioCls"/>&nbsp;<label><fmt:message key="label.completed"/></label>
                         </td>
 
                     </tr>
@@ -71,22 +71,26 @@
 
                 <display:column headerClass="table_header" sortName="status" escapeXml="true" sortable="true" titleKey="label.status" style="width:10%">
                     <c:choose>
-                        <c:when test="${tableList.status == Constants['COMMENCING_SURVEY']}">
+                        <c:when test="${tableList.status == Constants['SURVEY_COMMENCING']}">
                             <fmt:message key="label.commencing"/>
                         </c:when>
-                        <c:when test="${tableList.status == Constants['COMPLETED_SURVEY']}">
+                        <c:when test="${tableList.status == Constants['SURVEY_COMPLETED']}">
                             <fmt:message key="label.completed"/>
                         </c:when>
+                        <c:when test="${tableList.status == Constants['SURVEY_DELETED']}">
+                            <fmt:message key="label.deleted"/>
+                        </c:when>
+
                         <c:otherwise>
                             <fmt:message key="label.ongoing"/>
                         </c:otherwise>
                     </c:choose>
                 </display:column>
-                <display:column headerClass="table_header" sortName="createdDate" escapeXml="true" sortable="true" titleKey="label.createddate" style="width:10%">
-                    <fmt:formatDate pattern="${date_format}" value="${tableList.createdDate }"/>
+                <display:column headerClass="table_header" sortName="startedDate" escapeXml="true" sortable="true" titleKey="label.starteddate" style="width:10%">
+                    <fmt:formatDate pattern="${date_format}" value="${tableList.startedDate }"/>
                 </display:column>
-                <display:column headerClass="table_header" sortName="modifiedDate" escapeXml="true" sortable="true" titleKey="label.modifieddate" style="width:10%">
-                    <fmt:formatDate pattern="${date_format}" value="${tableList.modifiedDate }"/>
+                <display:column headerClass="table_header" sortName="endedDate" escapeXml="true" sortable="true" titleKey="label.endeddate" style="width:10%">
+                    <fmt:formatDate pattern="${date_format}" value="${tableList.endedDate }"/>
                 </display:column>
                 <display:column sortable="false"  headerClass="table_header" url="/admin/survey/edit.html"
                                 titleKey="label.options" style="width: 10%">
